@@ -28,6 +28,11 @@ MapTileSet::MapTileSet(std::size_t cacheSize,
     _bufferCache(bufferCache),
     _onAddListener(this->onAdd.newListener(this, &MapTileSet::_onAdd))
 {
+    // Tiles are decoded with ofLoadImage() on worker threads, and FreeImage's
+    // one-time initialisation is not thread-safe. Constructing an ofImage
+    // initialises FreeImage here, on the constructing thread, first.
+    ofImage();
+
     if (_bufferCache == nullptr && _provider->isCacheable())
     {
         _bufferCache = std::make_shared<MBTilesCache>(*_provider, DEFAULT_BUFFER_CACHE_LOCATION);
