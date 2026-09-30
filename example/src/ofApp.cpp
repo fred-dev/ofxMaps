@@ -39,7 +39,8 @@ void ofApp::setup()
     ofxGeo::Coordinate chicago(41.8827, -87.6233);
     ofxGeo::Coordinate bethel(45.0579, -93.1605);
 
-    tileLayer->setCenter(coordinates[3], 21);
+    tileLayer->setCenter(coordinates[3], 12);
+	
 
 }
 
@@ -55,14 +56,8 @@ void ofApp::update()
 
 void ofApp::draw()
 {
-//    ofScale(0.25, 0.25, 1);
-//    ofBackgroundGradient(ofColor(255), ofColor(0));
-//    ofFill();
-//    ofSetColor(255);
 
-//    cam.begin();
     ofPushMatrix();
-    //ofTranslate(-tileLayer->getWidth() / 2, -tileLayer->getHeight() / 2);
     tileLayer->draw(0, 0);
     ofPopMatrix();
 
@@ -76,8 +71,6 @@ void ofApp::draw()
         ofDrawCircle(tc.x, tc.y, 20);
     }
     ofPopStyle();
-
-//    cam.end();
 
     ofDrawBitmapStringHighlight(tileLayer->getCenter().toString(0), 14, ofGetHeight() - 32);
     ofDrawBitmapStringHighlight("Task Queue:" + ofx::TaskQueue::instance().toString(), 14, ofGetHeight() - 16);
@@ -128,11 +121,12 @@ void ofApp::keyPressed(int key)
     {
         animation = 0;
     }
-//    else if (key == ' ')
-//    {
-//        setsIndex = (setsIndex + 1) % sets.size();
-//        tileLayer->setSetId(sets[setsIndex]);
-//    }
+    else if (key == ' ')
+	{
+		setsIndex = (setsIndex + 1) % coordinates.size();
+		tileLayer->setCenter(coordinates[setsIndex], 12);
+	}
+
 
 }
 
