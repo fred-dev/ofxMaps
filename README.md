@@ -1,6 +1,9 @@
 ofxMaps
 ============
 
+> **About this fork:** fork of [bakercp/ofxMaps](https://github.com/bakercp/ofxMaps). This branch matches upstream. The `poco_headers_only` branch builds against [ofxPocoHeaders](https://github.com/fred-dev/ofxPocoHeaders) instead of the old ofxPoco addon.
+
+
 ## Description
 
 A slippy map addon inspired by https://github.com/RandomEtc/modestmaps-of and http://unfoldingmaps.org/.
